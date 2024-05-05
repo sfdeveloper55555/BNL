@@ -3,6 +3,13 @@ import Table from "react-bootstrap/Table";
 import OutlineButton from "./OutlineButton";
 import ProgressBar from "react-bootstrap/ProgressBar";
 import Form from "react-bootstrap/Form";
+import { Navbar, Nav, NavDropdown } from "react-bootstrap";
+import CustomModal from "./Modal";
+import {
+  EXTERNAL_USER_MANAGEMENT_SCREEN,
+  externalUserManagementData,
+} from "../constant";
+import CheckboxDropdown from "./CheckboxDropdown";
 
 const tableData = [
   {
@@ -51,6 +58,25 @@ const tableData = [
     noOfSecondaryLinks: 48,
   },
 ];
+const dropdownData = [
+  {
+    id: 1,
+    title: "Pampers US",
+  },
+  {
+    id: 2,
+    title: "Pampers UK",
+  },
+  {
+    id: 3,
+    title: "Pampers IN",
+  },
+  {
+    id: 4,
+    title: "Pampers KR",
+  },
+];
+const options = ["Pampers US", "Pampers UK", "Pampers IN", "Pampers KR"];
 
 const RetailerInsightTable = () => {
   const containerRef = useRef(null);
@@ -58,14 +84,13 @@ const RetailerInsightTable = () => {
   const [startX, setStartX] = useState(null);
   const [scrollLeft, setScrollLeft] = useState(0);
   const [modalShow, setModalShow] = React.useState(false);
-  const [isChevronDown, setIsChevronDown] = useState(true);
   const [text, setText] = useState("");
-  const [confirmModalShow, setConfirmModalShow] = useState(false);
-  const handleModal = (args) => {
-    if (args.id === 1) {
-      setModalShow(true);
-    }
+  const [selectedOptions, setSelectedOptions] = useState([]);
+
+  const handleSelect = (newOptions) => {
+    setSelectedOptions(newOptions);
   };
+
   const handleMouseDown = (e) => {
     setIsDragging(true);
     setStartX(e.clientX - containerRef.current.offsetLeft);
@@ -83,7 +108,7 @@ const RetailerInsightTable = () => {
     setIsDragging(false);
   };
   return (
-    <div className="m-3 bg-white retailer-insight-container">
+    <div className="retailer-insight-container">
       {/* product  table section  */}
       <div
         className="horizontal-scroll-container"
@@ -94,20 +119,17 @@ const RetailerInsightTable = () => {
         onMouseUp={handleMouseUp}
         onMouseLeave={handleMouseUp}
       >
-        <div style={{ padding: 20 }}>
-          <div style={{ paddingLeft: 10, paddingTop: 10 }}>
-            <p className="product-insight-title">Retailer Insights</p>
+        <div>
+          <div className="mt-5 px-4">
+            <p className="product-insight-title px-3">Retailer Insights</p>
           </div>
           <div className="retailer-insight-table">
             <Table>
               <thead>
                 <tr>
                   <th className="px-4">
-                    <div className="d-flex justify-content-center">
-                      <OutlineButton
-                        text={"Websites"}
-                        iconName={"bi-plus-lg"}
-                      />
+                    <div className="btn-dropdown-container">
+                      <CheckboxDropdown title="Websites" items={options} />
                     </div>
                   </th>
 
@@ -139,13 +161,13 @@ const RetailerInsightTable = () => {
               <tbody>
                 {tableData.map((item, index) => (
                   <tr
-                    className="retailer-insight-table-body px-4"
+                    className="retailer-insight-table-body px-4 first-child-border"
                     key={item.id}
                   >
                     <td className="text-center  ">
                       <div className="insight-title py-2">{item.title}</div>
                     </td>
-                    <td className="px-4 ">
+                    <td className="px-4">
                       <div className="insight-title py-2">
                         {item.noOfRetailers}
                       </div>
@@ -156,7 +178,7 @@ const RetailerInsightTable = () => {
                           <div className="insight-title">{item.noOfLinks}</div>
                         </div>
                         <div className="d-flex progress-bar">
-                          <ProgressBar now={item.noOfLinks}  w/>
+                          <ProgressBar now={item.noOfLinks} w />
                         </div>
                       </div>
                     </td>
@@ -203,6 +225,15 @@ const RetailerInsightTable = () => {
           </div>
         </div>
       </div>
+      <CustomModal
+        modalTitle="External User Management"
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+        text={text}
+        setText={setText}
+        modalData={externalUserManagementData}
+        screen={EXTERNAL_USER_MANAGEMENT_SCREEN}
+      />
     </div>
   );
 };

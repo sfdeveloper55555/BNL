@@ -6,13 +6,14 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Dashboard from "./components/Dashboard";
 import GlobalRetailManagement from "./components/GlobalRetailManagement";
 import WebsiteManagement from "./components/WebsiteManagement";
+import NotFound from "./components/NotFound";
 
 function App(props) {
   return (
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Tables />} />
+          <Route path="/" element={<Dashboard />} />
           <Route path="/buy-now-lite" element={<Tables />} />
           <Route path="/broken-links" element={<Tables />} />
           <Route
@@ -25,6 +26,7 @@ function App(props) {
             element={<GlobalRetailManagement />}
           />
           <Route path="/website-management" element={<WebsiteManagement />} />
+          <Route path="/not-found" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
     </>
