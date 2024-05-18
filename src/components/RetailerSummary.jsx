@@ -10,6 +10,7 @@ import { RETAILER_SUMMARY_SCREEN, retailSummaryData } from "../constant";
 import withLayout from "../pages/Layout";
 import { useLocation } from "react-router-dom";
 import DeleteModal from "./DeleteModal";
+import Pagination from "./Pagination";
 
 const buttons = [
   { id: 1, text: "Add", iconText: "bi-plus-lg" },
@@ -52,6 +53,52 @@ const tableData = [
     createdDate: "11 April 2024",
     lastUpdateDate: "11 April 2024",
   },
+  {
+    id: 4,
+    status: false,
+    retailerName: "Big Basket",
+    url: "https://www.bigbasket.b.co.in/en-in",
+    imageUrl: require("../assets/images/bigbasket.png"),
+    createdDate: "11 April 2024",
+    lastUpdateDate: "11 April 2024",
+  },
+  {
+    id: 4,
+    status: false,
+    retailerName: "Big Basket",
+    url: "https://www.bigbasket.b.co.in/en-in",
+    imageUrl: require("../assets/images/bigbasket.png"),
+    createdDate: "11 April 2024",
+    lastUpdateDate: "11 April 2024",
+  },
+  {
+    id: 4,
+    status: false,
+    retailerName: "Big Basket",
+    url: "https://www.bigbasket.b.co.in/en-in",
+    imageUrl: require("../assets/images/bigbasket.png"),
+    createdDate: "11 April 2024",
+    lastUpdateDate: "11 April 2024",
+  },
+  {
+    id: 4,
+    status: false,
+    retailerName: "Big Basket",
+    url: "https://www.bigbasket.b.co.in/en-in",
+    imageUrl: require("../assets/images/bigbasket.png"),
+    createdDate: "11 April 2024",
+    lastUpdateDate: "11 April 2024",
+  },
+  {
+    id: 4,
+    status: false,
+    retailerName: "Big Basket",
+    url: "https://www.bigbasket.b.co.in/en-in",
+    imageUrl: require("../assets/images/bigbasket.png"),
+    createdDate: "11 April 2024",
+    lastUpdateDate: "11 April 2024",
+  },
+  
 ];
 
 function RetailerSummary(props) {
@@ -181,6 +228,7 @@ function RetailerSummary(props) {
             ))}
           </tbody>
         </Table>
+        <Pagination />
       </Container>
       {/* modal  */}
       <CustomModal
